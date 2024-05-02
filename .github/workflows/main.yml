@@ -66,6 +66,6 @@ jobs:
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
           echo $COMMIT_SHA
-          docker tag apicontainer:latest <substituir_aqui>/apicontainer:$COMMIT_SHA
-          docker push <substituir_aqui>/apicontainer:$COMMIT_SHA
+          docker tag apicontainer:latest <samuelviana2234/apicontainer>/apicontainer:$COMMIT_SHA
+          docker push <samuelviana2234/apicontainer>/apicontainer:$COMMIT_SHA
           
