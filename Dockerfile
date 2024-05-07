@@ -30,7 +30,6 @@ RUN apk add --no-cache python3 py3-pip
 # Copiando credenciais da AWS
 ARG AWS_ACCESS_KEY_ID
 ARG AWS_SECRET_ACCESS_KEY
-ARG AWS_DEFAULT_REGION
 ARG AWS_SESSION_TOKEN
 
 RUN mkdir aws
