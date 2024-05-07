@@ -63,7 +63,7 @@ jobs:
       - name: Docker build (CI)
         if: always()
         run: |
-          docker build --build-arg AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --build-arg AWS_DEFAULT_REGION="us-east-1" -t apicontainer .
+          docker build --build-arg AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --build-arg AWS_DEFAULT_REGION="us-east-1" -t automacao_sam .
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -73,14 +73,14 @@ jobs:
         if: always()
         run: |
           echo "VULNERABILIDADES" | figlet -c -f small
-          snyk container test apicontainer:latest || true
+          snyk container test automacao_sam:latest || true
          
       - name: Docker Push (CD)
         if: always()
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
           echo $COMMIT_SHA
-          docker tag apicontainer:latest samuelviana2244/automacao_sam:$COMMIT_SHA
+          docker tag automacao_sam:latest samuelviana2244/automacao_sam:$COMMIT_SHA
           docker push samuelviana2244/automacao_sam:$COMMIT_SHA
      
       - name: Terraform Apply
