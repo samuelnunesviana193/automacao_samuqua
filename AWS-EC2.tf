@@ -19,7 +19,7 @@ resource "aws_instance" "ec2_instance" {
               service docker start
               usermod -a -G docker ec2-user
               docker push samuelviana2244/automacao_sam/apicontainer:${var.github_sha}
-              docker run -d -p 8080:8080 --name api-container samuelviana2244/apicontainer:${var.github_sha}
+              docker run -d -p 8080:8080 --name api-container samuelviana2244/automacao_sam:${var.github_sha}
               EOF
 
   tags = {
